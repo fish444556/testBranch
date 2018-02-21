@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.1/cjs/react.development.js"></script>
+	<div id="container">
+	    <!-- This element's contents will be replaced with your component. -->
+	</div>
+	<script>
+		import React from 'react';
+		class AgentsList extends React.Component {
+		  constructor(props) {
+		    super(props);
+		  }
+
+		  handleClick(e) {
+		    e.preventDefault();
+		    alert(this.props);
+		  }
+
+		  render() {
+		    const { agents } = this.props;
+
+		    var agentsNodes = agents.map(function(agent, i) {
+		      if(true) {
+		        return (
+		          <Agent agent={agent} key={i} aaa={this.handleClick.bind(this)} />
+		        );
+		      }
+		    }, this);
+		    return (
+		      <div id="agents">
+		        <div className="agents-title">
+		          <h3>Title</h3>
+		        </div>
+		        {agentsNodes}
+		      </div>
+		    );
+		  }
+		}
+
+		class Agent extends React.Component {
+		  constructor(props) {
+		    super(props);
+		  }
+
+		  render() {
+		    const { agent } = this.props;
+
+		    return (
+		      <a href='/' onClick={this.props.aaa} style={{'display': 'block'}}>
+		       {agent}
+		      </a>
+		    );
+		  }
+		}
+
+		React.render(<AgentsList agents={['agent1', 'agent2', 'agent3']} />, document.getElementById('container'));
+	</script>
+</body>
+</html>
